@@ -34,44 +34,19 @@ namespace Tyuiu.SeledkovNP.Sprint4.Task4.V20
              4, 7, 7, 8, 8,
              */
 
-            int[,] array = new int[5, 5];
+            Console.WriteLine("Введите количество строк массива:");
+            int rows = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите количество столбцов массива: ");
+            int columns = Convert.ToInt32(Console.ReadLine());
 
+            int[,] matrix = new int[rows, columns];
 
-            Console.WriteLine("Введите элементы двумерного массива (от 4 до 8):");
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < columns; j++)
                 {
-                    int value = 0;
-                    bool isValid = false;
-
-
-                    while (!isValid)
-                    {
-                        Console.Write($"[{i + 1},{j + 1}]: ");
-                        isValid = int.TryParse(Console.ReadLine(), out value);
-
-                        if (!isValid || value < 4 || value > 8)
-                        {
-                            Console.WriteLine("Некорректное значение!");
-                            isValid = false;
-                        }
-                    }
-
-                    array[i, j] = value;
-                }
-            }
-
-
-
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    if (array[i, j] % 2 == 0)
-                    {
-                        array[i, j] = 1;
-                    }
+                    Console.Write($"Введите элемент массива {i},{j}:");
+                    matrix[i, j] = Convert.ToInt32(Console.ReadLine());
                 }
             }
 
@@ -80,15 +55,30 @@ namespace Tyuiu.SeledkovNP.Sprint4.Task4.V20
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                             *");
             Console.WriteLine("**************************************************************************");
 
-            Console.WriteLine("\nИзмененный массив:");
-            for (int i = 0; i < 5; i++)
+            
+            Console.WriteLine();
+            Console.WriteLine("Введённый массив:");
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < columns; j++)
                 {
-                    Console.Write($"{array[i, j]} ");
+                    Console.Write($"{matrix[i, j]} \t");
                 }
                 Console.WriteLine();
-                
+            }
+
+            Console.WriteLine("**************************************************************************");
+
+            int[,] res = ds.Calculate(matrix);
+
+            Console.WriteLine("Массив без чётных элементов:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write($"{res[i, j]} \t");
+                }
+                Console.WriteLine();
             }
 
             Console.ReadKey();

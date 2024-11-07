@@ -8,15 +8,23 @@ namespace Tyuiu.SeledkovNP.Sprint4.Task4.V20.Lib
 
             int rows = matrix.GetUpperBound(0) + 1;
             int columns = matrix.Length / rows;
+            int[,] array = new int[rows, columns];
 
-            int column = 2;
-            int sum = 0;
-
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            for (int i = 0; i < rows; i++)
             {
-                sum += matrix[row, column];
+                for (int j = 0; j < columns; j++)
+                {
+                    if (matrix[i, j] % 2 == 0)
+                    {
+                        array[i, j] = 1;
+                    }
+                    else
+                    {
+                        array[i, j] = matrix[i, j];
+                    }
+                }
             }
-            return matrix;
+            return array;
 
         }
     }
